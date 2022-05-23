@@ -5,25 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.15.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script
+    <script src="https://cdn.tailwindcss.com"></script>
     <script type="module" defer id="javascript"></script>
+    <html data-theme="cupcake"></html>
     <link rel="stylesheet" href="style.css">
-    <title>Weather App</title>
+    <title>WeatHER App</title>
 </head>
 <body>
-    
-    <div class="card bg-primary w-96 bg-base-100 shadow-xl">
-        <figure class="px-10 pt-10">
-          <img src="#" alt="#" class="rounded-xl" />
-        </figure>
-        <div class="card-body items-center text-center">
-          <h2 class="card-title">Weather </h2>
-          <p></p>
-          <div class="card-actions">
-            <button class="btn btn-primary">Check</button>
-          </div>
+
+        <div class="card bg-base-100 w-96 shadow-xl">
+            <figure class="px-10 pt-10">
+            <img src="#" alt="#" class="rounded-xl" />
+            </figure>
+            <div class="card-body items-center text-center">
+            <h2 id="cityID">Weather </h2>
+            <p id="temperature">Temperature</p>
+            <p id="description">Rainy Days</p>
+            <p id="date">Date</p>
+            <input type="text" placeholder="Enter location" class="input input-bordered input-secondary w-full max-w-xs" />
+            <div class="card-actions">
+                <button class="btn btn-secondary">Check</button>
+            </div>
+            </div>
         </div>
-      </div>
 
 </body>
 </html>
