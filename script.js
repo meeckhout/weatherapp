@@ -22,7 +22,7 @@ function getWeather() {
   response.json())
   .then((data) => {
         city.innerHTML = data.name
-        temp.innerHTML = data.main.temp
+        temp.innerHTML = (data.main.temp).toFixed(0)
         description.innerHTML = data.weather[0][main] 
   })
   .catch(function() {
