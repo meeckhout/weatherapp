@@ -4,22 +4,28 @@ const city = document.getElementById('cityID')
 const button = document.querySelector('button')
 const temp = document.getElementById('temperature')
 const description = document.getElementById('description')
-const date = document.getElementById('date')
-const url = `https://api.openweathermap.org/data/2.5/weather?q=gent&appid=${API_KEY}`
+const url = `https://api.openweathermap.org/data/2.5/weather?q=gent&units=metric&appid=${API_KEY}`
 
-button.addEventListener('click', event => {
+
+// button.addEventListener('click', event => {
+//     getWeather()
+//     // showWeather()
+// })
+
+window.onload = () => {
     getWeather()
-})
+}
 
 function getWeather() {
   fetch(url)
   .then((response) => 
   response.json())
   .then((data) => {
-    console.log(data)
+        city.innerHTML = data.name
+        temp.innerHTML = data.main.temp
+        description.innerHTML = data.weather[0][main] 
   })
-  .catch(() => {
-    alert('Search for valid city')
+  .catch(function() {
+    
   }) 
 }
-
