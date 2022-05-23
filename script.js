@@ -1,25 +1,19 @@
-import { api } from "config.js";
+// import { api } from "config.js";
 const lat = '59.334591'
 const lon = '18.063240'
-const cityID = document.getElementById('cityID')
-const temp = document.getElementById('temperature')
+const city = document.getElementById('city')
+let temp = document.getElementById('temperature')
 const description = document.getElementById('description')
 const date = document.getElementById('date')
+const url = 'https://api.openweathermap.org/data/2.5/weather?id=lat=59.3293&lon=18.0686&appid=0aedbe0e2b61bf889a956fc2b9a1ca9d'
 
-
-function weatherBalloon() {
-    const key = '{api}'
-
-    fetch('https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={api}')  
-    .then(function(resp) { return resp.json() }) // Convert data to json
-    .then(function(data) {
-      console.log(data);
-    })
-    .catch(function() {
-      // catch any errors
-    });
-  }
-  
-  window.onload = function() {
-    weatherBalloon();
-  }
+  fetch(url)
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    temperature = data;
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
