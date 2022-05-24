@@ -9,7 +9,7 @@ const url = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&units=me
 
 let city = document.getElementById('cityID')
 let lat = []
-let long = []
+let lon = []
 
 
 
@@ -44,8 +44,8 @@ function getWeather() {
 if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition((position) =>{
     lat = position.coords.latitude;
-    long = position.coords.longitude;
-    const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${API_KEY}`
+    lon = position.coords.longitude;
+    const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
 
     fetch(api)
     .then((response) => 
@@ -81,6 +81,11 @@ function getResults (query) {
 }
 
 function displayResults (data) {
-  city.innerHTML = data[0].name
   
+  lat = data[0].lat
+  lon = data[0].lon
+  city.innerHTML = data[0].name
+  const urlCoordinate = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}` 
+
+  console.log(urlCoordinate);
 }
