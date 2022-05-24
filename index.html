@@ -15,15 +15,22 @@
 
         <div class="card bg-base-100 w-96 shadow-xl">
             <figure class="px-10 pt-10">
-            <img src="#" alt="#" class="rounded-xl" />
+            <img id="image" src="#" alt="#" class="rounded-xl" />
             </figure>
             <div class="card-body items-center text-center">
-            <h2 id="cityID"><span></span></h2>
-            <p id="temperature"><span></span></p>
-            <p id="description"><span></span></p>
-            <input type="text" placeholder="Enter location" class="input input-bordered input-secondary w-full max-w-xs" />
+            <span id="location"><h2 id="cityID"></h2></span>
+            <span><p id="temperature"></p></span>
+            <span><p id="description"></p></span>
+
+            <div class="form-control w-full max-w-xs">
+                <label for ="cityName" class="label">
+                    <span class="label-text">Type in location</span>
+                </label>
+                <input id="cityName" type="text" placeholder="Location" class="input input-bordered w-full max-w-xs" />
+            </div>
+
             <div class="card-actions">
-                <button class="btn btn-secondary">Check</button>
+                <button type="submit" class="btn btn-secondary">Check</button>
             </div>
             </div>
         </div>
