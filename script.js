@@ -1,15 +1,17 @@
 import { API_KEY } from './config.js'
 
 const input = document.getElementById('cityName')
-const city = document.getElementById('cityID')
 const button = document.querySelector('button')
 const temp = document.getElementById('temperature')
 const description = document.getElementById('description')
 const image = document.getElementById('image')
+const url = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&units=metric&appid=${API_KEY}`
+
+let city = document.getElementById('cityID')
 let lat = []
 let long = []
-const url = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&units=metric&appid=${API_KEY}`
-const btnUrl = `https://api.openweathermap.org/data/2.5/weather?q='+inputval.value+'&units=metric&appid=${API_KEY}`
+
+
 
 window.onload = () => {
   getWeather()
@@ -72,11 +74,13 @@ function getLocationCoordinates (event) {
 
 function getResults (query) {
   fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${query}&units=metric&appid=${API_KEY}`)
-  .then((weather) => {
-    return weather.json()
+  .then((data) => {
+    return data.json()
   })
   .then(displayResults)
 }
-function displayResults (weather) {
-  console.log(weather)
+
+function displayResults (data) {
+  city.innerHTML = data[0].name
+  
 }
