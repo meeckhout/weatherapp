@@ -1,4 +1,5 @@
 import { API_KEY } from './config.js'
+
 const input = document.getElementById('cityName')
 const city = document.getElementById('cityID')
 const button = document.querySelector('button')
@@ -7,45 +8,41 @@ const description = document.getElementById('description')
 const image = document.getElementById('image')
 let lat = []
 let long = []
-const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${API_KEY}`
+const url = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&units=metric&appid=${API_KEY}`
 const btnUrl = `https://api.openweathermap.org/data/2.5/weather?q='+inputval.value+'&units=metric&appid=${API_KEY}`
-
-
-
-// const errorCallback = (error) => {console.error(error)}
-// const successCallback = (position) => {
-//     lat.push(position.coords.latitude)
-//     lon.push(position.coords.longitude)}
-
-// navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
 
 window.onload = () => {
   getWeather()
-  // weather()
 }
 
-button.addEventListener('click', event => {
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      const nameValue = data.name
-      const descriptionValue = data.weather['0']['description']
-      const temperatureValue = (data.main.temp).toFixed(0) + '°C'
+// input.addEventListener("submit", event => {
+//   event.preventDefault();
+//   const inputVal = input.value;
+// });
 
-      city.innerHTML = `You're in ${nameValue}`
-      temp.innerHTML = `It is ${temperatureValue}`
-      description.innerHTML = `Feels a bit ${descriptionValue}`
-    })
-    .catch(err => 
-      alert('Enter valid city'))
-})
+
+// button.addEventListener('click', event => {
+//     fetch(url)
+//     .then(response => response.json())
+//     .then(data => {
+//       const nameValue = data.name
+//       const descriptionValue = data.weather['0']['description']
+//       const temperatureValue = (data.main.temp).toFixed(0) + '°C'
+
+//       city.innerHTML = `You're in ${nameValue}`
+//       temp.innerHTML = `It is ${temperatureValue}`
+//       description.innerHTML = `Feels a bit ${descriptionValue}`
+//     })
+//     .catch(err => 
+//       alert('Enter valid city'))
+// })
 
 
 function getWeather() {
 if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition((position) =>{
-    var lat = position.coords.latitude;
-    var long = position.coords.longitude;
+    lat = position.coords.latitude;
+    long = position.coords.longitude;
     const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${API_KEY}`
 
     fetch(api)
@@ -61,4 +58,25 @@ if(navigator.geolocation){
     }) 
   })
 }
+}
+
+const inputCity = document.querySelector('.inputCity')
+inputCity.addEventListener('keypress', getLocationCoordinates)
+
+function getLocationCoordinates (event) {
+  if (event.keyCode == 13) {
+  getResults(inputCity.value)
+  console.log(inputCity.value);
+  }
+}
+
+function getResults (query) {
+  fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${query}&units=metric&appid=${API_KEY}`)
+  .then((weather) => {
+    return weather.json()
+  })
+  .then(displayResults)
+}
+function displayResults (weather) {
+  console.log(weather)
 }
