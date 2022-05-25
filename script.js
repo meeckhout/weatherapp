@@ -68,7 +68,7 @@ inputCity.addEventListener('keypress', getLocationCoordinates)
 function getLocationCoordinates (event) {
   if (event.keyCode == 13) {
   getResults(inputCity.value)
-  console.log(inputCity.value);
+  console.log(inputCity.value)
   }
 }
 
@@ -81,11 +81,26 @@ function getResults (query) {
 }
 
 function displayResults (data) {
-  
   lat = data[0].lat
   lon = data[0].lon
-  city.innerHTML = data[0].name
-  const urlCoordinate = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}` 
 
-  console.log(urlCoordinate);
+  const urlCoordinate = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+
+    fetch(urlCoordinate)
+        .then((response) => {
+            return response.json()
+        })
+        .then(data => {
+            city.innerHTML = data[0].name
+            lat = urlCoordinate
+            lon = urlCoordinate
+            console.log(data)
+        })
+  console.log(urlCoordinate)
+}
+
+function reverseLocation(data) {
+    lat = data[0].lat
+    lon = data[0].lon
+    
 }
