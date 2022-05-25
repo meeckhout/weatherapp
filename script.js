@@ -83,7 +83,6 @@ function getResults (query) {
 function displayResults (data) {
   lat = data[0].lat
   lon = data[0].lon
-
   const urlCoordinate = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
 
     fetch(urlCoordinate)
@@ -92,8 +91,6 @@ function displayResults (data) {
         })
         .then(data => {
             city.innerHTML = data[0].name
-            lat = urlCoordinate
-            lon = urlCoordinate
             reverseLocation(lat, lon)
             console.log(data)
         })
