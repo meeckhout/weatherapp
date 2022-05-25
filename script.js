@@ -11,34 +11,9 @@ let city = document.getElementById('cityID')
 let lat = []
 let lon = []
 
-
-
 window.onload = () => {
   getWeather()
 }
-
-// input.addEventListener("submit", event => {
-//   event.preventDefault();
-//   const inputVal = input.value;
-// });
-
-
-// button.addEventListener('click', event => {
-//     fetch(url)
-//     .then(response => response.json())
-//     .then(data => {
-//       const nameValue = data.name
-//       const descriptionValue = data.weather['0']['description']
-//       const temperatureValue = (data.main.temp).toFixed(0) + '°C'
-
-//       city.innerHTML = `You're in ${nameValue}`
-//       temp.innerHTML = `It is ${temperatureValue}`
-//       description.innerHTML = `Feels a bit ${descriptionValue}`
-//     })
-//     .catch(err => 
-//       alert('Enter valid city'))
-// })
-
 
 function getWeather() {
 if(navigator.geolocation){
@@ -59,16 +34,18 @@ if(navigator.geolocation){
     .catch(function() {
     }) 
   })
-}
-}
+}}
 
 const inputCity = document.querySelector('.inputCity')
 inputCity.addEventListener('keypress', getLocationCoordinates)
+button.addEventListener('click', getLocationCoordinates)
 
 function getLocationCoordinates (event) {
   if (event.keyCode == 13) {
   getResults(inputCity.value)
   console.log(inputCity.value)
+  } else {
+      getResults(inputCity.value)
   }
 }
 
