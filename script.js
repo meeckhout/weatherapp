@@ -91,19 +91,19 @@ function displayResults (data) {
         })
         .then(data => {
             city.innerHTML = data[0].name
+            lat = data[0].lat
+            lon = data[0].lon
             reverseLocation(lat, lon)
-            console.log(data)
+            // console.log(data)
         })
 }
 
 async function reverseLocation(lat, lon) {
-    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
-    try {
-        let input = await fetch(url)
-        let response = await input.json()
-        console.log(response)
-    }
-    catch (error) {
-        console.log(error)
-    }
+    let url = fetch (`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`)
+        .then(response => response.json())
+        .then (data => {
+            console.log(data)
+            temp.innerHTML = (data.main.temp).toFixed(0) + '°c'
+            description.innerHTML = data.weather[0]['description']
+        })
 }
