@@ -1,5 +1,10 @@
 import { API_KEY } from './config.js'
 
+/*TODO: ADD FIVE DAY WEATHER FORECAST*/
+const forecastTemp = document.querySelector('forecast-temp')
+const forecastDescription = document.querySelector('forecast-description')
+
+
 const input = document.getElementById('cityName')
 const button = document.querySelector('button')
 const temp = document.getElementById('temperature')
@@ -43,7 +48,6 @@ button.addEventListener('click', getLocationCoordinates)
 function getLocationCoordinates (event) {
   if (event.keyCode == 13) {
   getResults(inputCity.value)
-  console.log(inputCity.value)
   } else {
       getResults(inputCity.value)
   }
@@ -79,8 +83,19 @@ async function reverseLocation(lat, lon) {
     let url = fetch (`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`)
         .then(response => response.json())
         .then (data => {
-            console.log(data)
+            // console.log(data)
             temp.innerHTML = (data.main.temp).toFixed(0) + '°c'
             description.innerHTML = data.weather[0]['description']
+        })
+}
+
+function getWeatherForecast() {
+
+
+    return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`, {
+
+    })
+        .then(data => {
+            return data.json()
         })
 }

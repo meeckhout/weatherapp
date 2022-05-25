@@ -1,4 +1,12 @@
-body {
-  background-color: aliceblue;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
   height: 100vh;
-}/*# sourceMappingURL=style.css.map */
+  background-color: hotpink;
+}
+
+/*# sourceMappingURL=style.css.map */
