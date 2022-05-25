@@ -73,7 +73,7 @@ function getLocationCoordinates (event) {
 }
 
 function getResults (query) {
-  fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${query}&units=metric&appid=${API_KEY}`)
+  fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${query}&units=metric&appid=${API_KEY}`)
   .then((data) => {
     return data.json()
   })
@@ -84,7 +84,7 @@ function displayResults (data) {
   lat = data[0].lat
   lon = data[0].lon
 
-  const urlCoordinate = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+  const urlCoordinate = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
 
     fetch(urlCoordinate)
         .then((response) => {
@@ -94,13 +94,19 @@ function displayResults (data) {
             city.innerHTML = data[0].name
             lat = urlCoordinate
             lon = urlCoordinate
+            reverseLocation(lat, lon)
             console.log(data)
         })
-  console.log(urlCoordinate)
 }
 
-function reverseLocation(data) {
-    lat = data[0].lat
-    lon = data[0].lon
-    
+async function reverseLocation(lat, lon) {
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+    try {
+        let input = await fetch(url)
+        let response = await input.json()
+        console.log(response)
+    }
+    catch (error) {
+        console.log(error)
+    }
 }
