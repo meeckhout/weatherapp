@@ -11,32 +11,50 @@
     <script defer src="script.js" type="module"></script>
     <script src="https://kit.fontawesome.com/6a26c9c1a9.js" crossorigin="anonymous"></script>
 
-    <title>WeatHER App</title>
+    <title>Ye Olde Forecast</title>
 </head>
 <body>
 
     <div class="container">
 
         <div class="weather">
-            <h1 class="title">the city of</h1>
+            <h1 class="title">-the city of-</h1>
             <span class="location city"><h2 id="cityID"></h2></span>
             <span><p id="temperature"></p></span>
-            <span id=quotation><p id="description"></p></span>
+            <span><p id="description"></p></span>
         </div>
 
         <div class="search-box">
             <label for ="cityName" class="label">
-                <span class="label-text">searcheth thine own city</span>
+                <span class="label-text">searcheth thyne own city</span>
             </label>
             <div class="search-bar">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input id="cityName" class="inputCity" type="text" placeholder="City">
+                <input id="cityName" class="inputCity" type="text" placeholder="thyne city">
             </div>
         </div>
 
-        <div class="forecast">
-            <span><p id="forecast-temp"></p></span>
-            <span><p id="forecast-description"></p></span>
+        <div class="five-days">
+            <div class="forecast">
+                <span><p id="forecast-temp"></p></span>
+                <span><p id="forecast-description"></p></span>
+            </div>
+            <div class="forecast">
+                <span><p id="forecast-temp"></p></span>
+                <span><p id="forecast-description"></p></span>
+            </div>
+            <div class="forecast">
+                <span><p id="forecast-temp"></p></span>
+                <span><p id="forecast-description"></p></span>
+            </div>
+            <div class="forecast">
+                <span><p id="forecast-temp"></p></span>
+                <span><p id="forecast-description"></p></span>
+            </div>
+            <div class="forecast">
+                <span><p id="forecast-temp"></p></span>
+                <span><p id="forecast-description"></p></span>
+            </div>
         </div>
 
     </div>
