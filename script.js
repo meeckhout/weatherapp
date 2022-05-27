@@ -92,7 +92,7 @@ async function reverseLocation(lat, lon) {
 }
 
 
-let forecast = `https://api.openweathermap.org/data/2.5/forecast?q=stockholm&units=metric&appid=${API_KEY}`
+let forecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
 
 fetch(forecast)
     .then(response => {
@@ -102,8 +102,6 @@ fetch(forecast)
         console.log(data);
         data.list.forEach(list => {
             const iconId = list.weather[0].id;
-
-            let weekDay
 
             function day() {
                 let day = new Date();
@@ -117,10 +115,9 @@ fetch(forecast)
                     "Saturday"
                 ];
                 for (let i = 0; i < 5; i++) {
+                    const getDays = weekDay[day.getDay()]
                     console.log(weekDay[(day.getDay() + 1 + i) % 7]);
-                }
-            }
-            day();
+
 
             const container = document.querySelector('.five-days');
 
@@ -129,12 +126,12 @@ fetch(forecast)
             forecastCard.classList.add('forecast-card')
 
             const date = document.createElement('h2');
-            date.textContent = weekDay;
+            date.textContent = getDays;
             forecastCard.appendChild(date);
             date.classList.add('date');
 
             const currentTemp = document.createElement('p');
-            currentTemp.textContent = list.main.temp;
+            currentTemp.textContent = (list.main.temp).toFixed(0) + '°C';
             forecastCard.appendChild(currentTemp);
             currentTemp.classList.add('current-temp');
 
@@ -147,7 +144,8 @@ fetch(forecast)
             icon.src = `./icons/${list.weather[0].icon}.png`;
             forecastCard.appendChild(icon);
             icon.classList.add('icon');
-
+                }
+            }
+            day();
         })
-
-    });
+    })

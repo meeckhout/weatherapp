@@ -10,22 +10,21 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/6a26c9c1a9.js" crossorigin="anonymous"></script>
     <script defer src="script.js" type="module"></script>
-
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Ye Olde Forecast</title>
 </head>
 <body>
 
-    <div class="container">
+    <div class="container xl:wd-56 lg:wd-48 sm:wd-16 flex flex-col justify-center">
 
-        <div class="weather">
+        <div class="weather flex-auto flex-wrap">
             <h1 class="title">-the city of-</h1>
             <span class="location city"><h2 id="cityID"></h2></span>
             <span><p id="temperature"></p></span>
             <span><p id="description"></p></span>
         </div>
 
-        <div class="search-box">
+        <div class="search-box flex-auto">
             <label for ="cityName" class="label">
                 <span class="label-text">searcheth thyne own city</span>
             </label>
@@ -35,33 +34,7 @@
             </div>
         </div>
 
-        <div class="five-days">
-            <!--div class="forecast">
-                <span><p class="date"></p></span>
-                <span><p class="forecast-temp"></p></span>
-                <span><p class="forecast-description"></p></span>
-            </div>
-            <div class="forecast">
-                <span><p class="date"></p></span>
-                <span><p class="forecast-temp"></p></span>
-                <span><p class="forecast-description"></p></span>
-            </div>
-            <div class="forecast">
-                <span><p class="date"></p></span>
-                <span><p class="forecast-temp"></p></span>
-                <span><p class="forecast-description"></p></span>
-            </div>
-            <div class="forecast">
-                <span><p class="date"></p></span>
-                <span><p class="forecast-temp"></p></span>
-                <span><p class="forecast-description"></p></span>
-            </div>
-            <div class="forecast">
-                <span><p class="date"></p></span>
-                <span><p class="forecast-temp"></p></span>
-                <span><p class="forecast-description"></p></span>
-            </div>-->
-        </div>
+        <div class="five-days flex"></div>
 
     </div>
 </body>
