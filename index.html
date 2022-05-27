@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.15.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <html data-theme="cupcake"></html>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js" type="module"></script>
     <title>WeatHER App</title>
@@ -15,22 +12,24 @@
 
     <div class="container">
 
-            <div class="search-box">
-                <label for ="cityName" class="label">
-                    <span class="label-text">Type in city</span>
-                </label>
-                <input id="cityName" class="inputCity" type="text" placeholder="City" class="input input-bordered w-full max-w-xs" />
-                <button type="submit">Check</button>
-            </div>
-
-           <!-- <figure class="px-10 pt-10">
-            <img id="image" src="#" alt="#" class="rounded-xl" />
-            </figure>-->
-            <div class="weather">
+        <div class="weather">
+            <h1 class="title">the city of</h1>
             <span class="location city"><h2 id="cityID"></h2></span>
             <span><p id="temperature"></p></span>
-            <span><p id="description"></p></span>
-            </div>
+            <span id=quotation><p id="description"></p></span>
+        </div>
+
+        <!--<div class="image">
+            <img src="#" alt="#">
+        </div>-->
+
+
+        <div class="search-box">
+            <label for ="cityName" class="label">
+                <span class="label-text">Type in city</span>
+            </label>
+            <input id="cityName" class="inputCity" type="text" placeholder="City"  />
+            <button type="submit">Check</button>
         </div>
 
         <div class="forecast">
