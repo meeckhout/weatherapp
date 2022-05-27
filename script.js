@@ -3,6 +3,7 @@ import { API_KEY } from './config.js'
 /*TODO: ADD FIVE DAY WEATHER FORECAST*/
 const forecastTemp = document.querySelector('forecast-temp')
 const forecastDescription = document.querySelector('forecast-description')
+// const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
 
 const input = document.getElementById('cityName')
@@ -10,7 +11,7 @@ const button = document.querySelector('.fa-solid')
 const temp = document.getElementById('temperature')
 const description = document.getElementById('description')
 const image = document.getElementById('image')
-const url = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&units=metric&appid=${API_KEY}`
+const url = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&units=metric&appid=${API_KEY}`
 
 let city = document.getElementById('cityID')
 let lat = []
@@ -83,19 +84,61 @@ async function reverseLocation(lat, lon) {
     let url = fetch (`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`)
         .then(response => response.json())
         .then (data => {
-            // console.log(data)
             temp.innerHTML = (data.main.temp).toFixed(0) + '°c'
             description.innerHTML = data.weather[0]['description']
         })
+
+
 }
 
-function getWeatherForecast() {
 
+let forecast = `https://api.openweathermap.org/data/2.5/forecast?q=stockholm&units=metric&appid=${API_KEY}`
 
-    return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`, {
-
+fetch(forecast)
+    .then(response => {
+        return response.json();
     })
-        .then(data => {
-            return data.json()
+    .then(data => {
+        console.log(data);
+
+        data.list.forEach(list => {
+
+            const iconId = list.weather[0].id;
+
+
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const d = new Date(data.list[0].dt * 1000);
+            const dayName = days[d.getDay()];
+            console.log(dayName)
+
+            // Generate and append html elements on the page
+            const container = document.querySelector('.five-days');
+
+  /*          const forecastCard = document.querySelectorAll('forecast');
+            container.appendChild(forecastCard)
+            forecastCard.classList.add('forecast')*/
+
+            const date = document.querySelectorAll('date');
+            date.textContent = dayName;
+            container.appendChild(date);
+            date.classList.add('date');
+
+            const currentTemp = document.querySelectorAll('.forecast-temp')
+            currentTemp.textContent = list.main.temp;
+            forecastCard.appendChild(currentTemp);
+            currentTemp.classList.add('forecast-temp');
+
+            const conditions = document.createElement('p');
+            conditions.textContent = list.weather[0]['main']
+            forecastCard.appendChild(conditions);
+            conditions.classList.add('conditions');
+
+            const icon = document.createElement('img');
+            icon.src = `./icons/${list.weather[0].icon}.png`;
+            forecastCard.appendChild(icon);
+            icon.classList.add('icon');
         })
-}
+
+    });
+
+console.log('hello world!')
