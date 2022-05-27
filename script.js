@@ -19,7 +19,12 @@ let lon = []
 
 window.onload = () => {
   getWeather()
+    document.getElementById('cityName').value = '';
 }
+
+document.body.addEventListener('click', event => {
+    document.getElementById('cityName').value = '';
+})
 
 function getWeather() {
 if(navigator.geolocation){
