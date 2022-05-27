@@ -6,7 +6,7 @@ const forecastDescription = document.querySelector('forecast-description')
 
 
 const input = document.getElementById('cityName')
-const button = document.querySelector('button')
+const button = document.querySelector('.fa-solid')
 const temp = document.getElementById('temperature')
 const description = document.getElementById('description')
 const image = document.getElementById('image')
