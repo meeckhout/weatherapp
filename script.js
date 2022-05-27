@@ -3,7 +3,7 @@ import { API_KEY } from './config.js'
 /*TODO: ADD FIVE DAY WEATHER FORECAST*/
 const forecastTemp = document.querySelector('forecast-temp')
 const forecastDescription = document.querySelector('forecast-description')
-// const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
 
 const input = document.getElementById('cityName')
@@ -100,33 +100,43 @@ fetch(forecast)
     })
     .then(data => {
         console.log(data);
-
         data.list.forEach(list => {
-
             const iconId = list.weather[0].id;
 
+            let weekDay
 
-            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            const d = new Date(data.list[0].dt * 1000);
-            const dayName = days[d.getDay()];
-            console.log(dayName)
+            function day() {
+                let day = new Date();
+                let weekDay = [
+                    "Sunday",
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday"
+                ];
+                for (let i = 0; i < 5; i++) {
+                    console.log(weekDay[(day.getDay() + 1 + i) % 7]);
+                }
+            }
+            day();
 
-            // Generate and append html elements on the page
             const container = document.querySelector('.five-days');
 
-  /*          const forecastCard = document.querySelectorAll('forecast');
+            const forecastCard = document.createElement('div');
             container.appendChild(forecastCard)
-            forecastCard.classList.add('forecast')*/
+            forecastCard.classList.add('forecast-card')
 
-            const date = document.querySelectorAll('date');
-            date.textContent = dayName;
-            container.appendChild(date);
+            const date = document.createElement('h2');
+            date.textContent = weekDay;
+            forecastCard.appendChild(date);
             date.classList.add('date');
 
-            const currentTemp = document.querySelectorAll('.forecast-temp')
+            const currentTemp = document.createElement('p');
             currentTemp.textContent = list.main.temp;
             forecastCard.appendChild(currentTemp);
-            currentTemp.classList.add('forecast-temp');
+            currentTemp.classList.add('current-temp');
 
             const conditions = document.createElement('p');
             conditions.textContent = list.weather[0]['main']
@@ -137,8 +147,7 @@ fetch(forecast)
             icon.src = `./icons/${list.weather[0].icon}.png`;
             forecastCard.appendChild(icon);
             icon.classList.add('icon');
+
         })
 
     });
-
-console.log('hello world!')
