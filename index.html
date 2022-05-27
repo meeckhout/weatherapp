@@ -6,25 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&family=Poppins:wght@300;400;500&family=Roboto:wght@100;300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&family=UnifrakturCook&display=swap" rel="stylesheet">     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/6a26c9c1a9.js" crossorigin="anonymous"></script>
     <script defer src="script.js" type="module"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
     <title>Ye Olde Forecast</title>
 </head>
 <body>
 
-    <div class="container xl:wd-56 lg:wd-48 sm:wd-16 flex flex-col justify-center">
+    <div class="container">
 
-        <div class="weather flex-auto flex-wrap">
+        <div class="weather">
             <h1 class="title">-the city of-</h1>
             <span class="location city"><h2 id="cityID"></h2></span>
             <span><p id="temperature"></p></span>
             <span><p id="description"></p></span>
         </div>
 
-        <div class="search-box flex-auto">
+        <div class="search-box">
             <label for ="cityName" class="label">
                 <span class="label-text">searcheth thyne own city</span>
             </label>

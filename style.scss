@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Cattedrale-Demo', serif;
+    font-family: 'Cattedrale-Demo', 'UnifrakturCook';
     color: #343434;
     background-color: #DBD9D8;
     width: 100%;
@@ -100,3 +100,79 @@ button {
     padding: 4.5rem;
 }
 
+@media screen and (max-width: 360px) {
+    body {
+    }
+    .title {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    #cityID {
+        font-size: 150px;
+    }
+
+    #temperature {
+        font-size: 45px;
+    }
+
+    #description {
+        font-size: 55px;
+    }
+
+    .label-text {
+        font-size: 1.1rem;
+    }
+
+    #cityName {
+        width: 200px;
+        height: 26px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        height: 100%;
+    }
+    .title {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    #cityID {
+        font-size: 150px;
+    }
+
+    #temperature {
+        font-size: 45px;
+    }
+
+    #description {
+        font-size: 55px;
+    }
+
+    .label-text {
+        font-size: 1.1rem;
+    }
+
+    #cityName {
+        width: 200px;
+        height: 26px;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    body {
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    body {
+    }
+}
+
+@media screen and (min-width: 1560px) {
+    body {
+    }
+}
