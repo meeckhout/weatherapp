@@ -27,6 +27,7 @@ body {
 
 .title {
     //position: relative;
+    letter-spacing: .3rem;
     font-size: 50px;
 }
 
@@ -49,13 +50,28 @@ body {
 #description {
     font-size: 94px;
     color: #FAFAFA;
+    letter-spacing: .2rem;
 }
 
 .search-box {
     display: flex;
     flex-direction: column;
+    //margin-top: 10px;
     font-family: "Helvetica Neue";
     color: #9C9C9C;
+}
+
+#cityName {
+    width: 386px;
+    height: 42px;
+    border-radius: 6px;
+    border-style: none;
+}
+
+
+
+button {
+    margin-top: 15px;
 }
 
 

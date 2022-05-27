@@ -26,6 +26,7 @@ body {
 }
 
 .title {
+  letter-spacing: 0.3rem;
   font-size: 50px;
 }
 
@@ -46,6 +47,7 @@ body {
 #description {
   font-size: 94px;
   color: #FAFAFA;
+  letter-spacing: 0.2rem;
 }
 
 .search-box {
@@ -53,6 +55,17 @@ body {
   flex-direction: column;
   font-family: "Helvetica Neue";
   color: #9C9C9C;
+}
+
+#cityName {
+  width: 386px;
+  height: 42px;
+  border-radius: 6px;
+  border-style: none;
+}
+
+button {
+  margin-top: 15px;
 }
 
 /*# sourceMappingURL=style.css.map */
