@@ -92,65 +92,63 @@ async function reverseLocation(lat, lon) {
             temp.innerHTML = (data.main.temp).toFixed(0) + '°c'
             description.innerHTML = data.weather[0]['description']
         })
-
-
 }
 
+function day() {
+    let day = new Date();
+    let weekDay = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ];
+    for (let i = 0; i < 5; i++) {
+        const getDays = weekDay[day.getDay()]
+        console.log(weekDay[(day.getDay() + 1 + i) % 7]);
+    }
+    console.log(day)
+}
 
-let forecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+let forecast = `https://api.openweathermap.org/data/2.5/forecast?q=gent&cnt=5&units=metric&appid=${API_KEY}`
 
 fetch(forecast)
     .then(response => {
-        return response.json();
+        return response.json()
     })
     .then(data => {
-        console.log(data);
+        console.log(data)
         data.list.forEach(list => {
-            const iconId = list.weather[0].id;
 
-            function day() {
-                let day = new Date();
-                let weekDay = [
-                    "Sunday",
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday"
-                ];
-                for (let i = 0; i < 5; i++) {
-                    const getDays = weekDay[day.getDay()]
-                    console.log(weekDay[(day.getDay() + 1 + i) % 7]);
+            const container = document.querySelector('.five-days')
 
-
-            const container = document.querySelector('.five-days');
-
-            const forecastCard = document.createElement('div');
+            const forecastCard = document.createElement('div')
             container.appendChild(forecastCard)
             forecastCard.classList.add('forecast-card')
 
-            const date = document.createElement('h2');
-            date.textContent = getDays;
-            forecastCard.appendChild(date);
-            date.classList.add('date');
+/*            const date = document.createElement('h2')
+            date.textContent = day
+            forecastCard.appendChild(date)
+            date.classList.add('date')*/
 
-            const currentTemp = document.createElement('p');
-            currentTemp.textContent = (list.main.temp).toFixed(0) + '°C';
-            forecastCard.appendChild(currentTemp);
-            currentTemp.classList.add('current-temp');
+            const currentTemp = document.createElement('p')
+            currentTemp.textContent = (list.main.temp).toFixed(0) + '°C'
+            forecastCard.appendChild(currentTemp)
+            currentTemp.classList.add('current-temp')
 
-            const conditions = document.createElement('p');
+            const conditions = document.createElement('p')
             conditions.textContent = list.weather[0]['main']
-            forecastCard.appendChild(conditions);
-            conditions.classList.add('conditions');
+            forecastCard.appendChild(conditions)
+            conditions.classList.add('conditions')
 
-            const icon = document.createElement('img');
-            icon.src = `./icons/${list.weather[0].icon}.png`;
-            forecastCard.appendChild(icon);
-            icon.classList.add('icon');
-                }
-            }
-            day();
+            const icon = document.createElement('img')
+            icon.src = `http://openweathermap.org/img/w/${list.weather[0].icon}.png`
+            forecastCard.appendChild(icon)
+            icon.classList.add('icon')
+            day()
         })
     })
+.catch(error => {
+    console.log(error)})
