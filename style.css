@@ -64,6 +64,19 @@ body {
   border-style: none;
 }
 
+.hare {
+  width: 200px;
+  margin: 0 3rem 0 3rem;
+}
+
+.left {
+  transform: scaleX(-1);
+}
+
+span.img {
+  display: flex;
+}
+
 .search-bar {
   display: flex;
   position: relative;
