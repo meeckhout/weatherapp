@@ -1,4 +1,5 @@
 import {API_KEY} from './config.js'
+// import {  } from './functions.js'
 
 const input = document.getElementById('cityName')
 const button = document.querySelector('.fa-solid')
@@ -24,7 +25,7 @@ const inputCity = document.querySelector('.inputCity')
 inputCity.addEventListener('keypress', getLocationCoordinates)
 button.addEventListener('click', getLocationCoordinates)
 
-const getWeather = () => {
+export const getWeather = () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
             lat = position.coords.latitude;
@@ -63,8 +64,8 @@ function getResults(query) {
 }
 
 function displayResults(data) {
- /*   lat = data[0].lat
-    lon = data[0].lon*/
+    /*   lat = data[0].lat
+       lon = data[0].lon*/
     const urlCoordinate = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
 
     fetch(urlCoordinate)
