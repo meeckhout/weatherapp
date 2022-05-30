@@ -1,5 +1,4 @@
 import {API_KEY} from './config.js'
-import {test, day} from './functions.js'
 
 const input = document.getElementById('cityName')
 const button = document.querySelector('.fa-solid')
@@ -8,13 +7,11 @@ const description = document.getElementById('description')
 const url = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&units=metric&appid=${API_KEY}`
 
 let city = document.getElementById('cityID')
-let forecast = `https://api.openweathermap.org/data/2.5/forecast?q=gent&cnt=5&units=metric&appid=${API_KEY}`
 let lat = []
 let lon = []
 let dayOfTheWeek
 
 window.onload = () => {
-    test()
     getWeather()
     document.getElementById('cityName').value = '';
 }
@@ -27,9 +24,7 @@ const inputCity = document.querySelector('.inputCity')
 inputCity.addEventListener('keypress', getLocationCoordinates)
 button.addEventListener('click', getLocationCoordinates)
 
-export const getWeather = () => {
-    let lat = []
-    let lon = []
+const getWeather = () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
             lat = position.coords.latitude;
@@ -68,10 +63,8 @@ function getResults(query) {
 }
 
 function displayResults(data) {
-    let lat
-    let lon
-    lat = data[0].lat
-    lon = data[0].lon
+    /*   lat = data[0].lat
+       lon = data[0].lon*/
     const urlCoordinate = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
 
     fetch(urlCoordinate)
@@ -86,6 +79,26 @@ function displayResults(data) {
             // console.log(data)
         })
 }
+
+function day() {
+    let day = new Date();
+    let weekDays = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ]
+
+    for (let i = 0; i < 5; i++) {
+        let dayOfTheWeek = weekDays[(day.getDay() + i) % 7]
+    }
+    console.log(day)
+}
+
+let forecast = `https://api.openweathermap.org/data/2.5/forecast?q=gent&cnt=5&units=metric&appid=${API_KEY}`
 
 inputCity.addEventListener('keyup', (event) => {
     if (event.key === "Enter") {
