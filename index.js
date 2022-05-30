@@ -1,5 +1,5 @@
 import {API_KEY} from './config.js'
-import {test, day, getLocationCoordinates, getResults, displayResults} from './functions.js'
+import {test, day} from './functions.js'
 
 const input = document.getElementById('cityName')
 const button = document.querySelector('.fa-solid')
@@ -8,15 +8,13 @@ const description = document.getElementById('description')
 const url = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&units=metric&appid=${API_KEY}`
 
 let city = document.getElementById('cityID')
+let forecast = `https://api.openweathermap.org/data/2.5/forecast?q=gent&cnt=5&units=metric&appid=${API_KEY}`
 let lat = []
 let lon = []
 let dayOfTheWeek
 
 window.onload = () => {
     test()
-    getLocationCoordinates()
-    getResults()
-    displayResults()
     getWeather()
     document.getElementById('cityName').value = '';
 }
@@ -53,7 +51,41 @@ export const getWeather = () => {
     }
 }
 
-let forecast = `https://api.openweathermap.org/data/2.5/forecast?q=gent&cnt=5&units=metric&appid=${API_KEY}`
+function getLocationCoordinates(event) {
+    if (event.keyCode == 13) {
+        getResults(inputCity.value)
+    } else {
+        getResults(inputCity.value)
+    }
+}
+
+function getResults(query) {
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${query}&units=metric&appid=${API_KEY}`)
+        .then((data) => {
+            return data.json()
+        })
+        .then(displayResults)
+}
+
+function displayResults(data) {
+    let lat
+    let lon
+    lat = data[0].lat
+    lon = data[0].lon
+    const urlCoordinate = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+
+    fetch(urlCoordinate)
+        .then((response) => {
+            return response.json()
+        })
+        .then(data => {
+            city.innerHTML = data[0].name
+            lat = data[0].lat
+            lon = data[0].lon
+            reverseLocation(lat, lon)
+            // console.log(data)
+        })
+}
 
 inputCity.addEventListener('keyup', (event) => {
     if (event.key === "Enter") {
