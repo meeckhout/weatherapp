@@ -1,5 +1,5 @@
 import {API_KEY} from './config.js'
-// import {  } from './functions.js'
+import {test, day, getLocationCoordinates, getResults, displayResults} from './functions.js'
 
 const input = document.getElementById('cityName')
 const button = document.querySelector('.fa-solid')
@@ -13,6 +13,10 @@ let lon = []
 let dayOfTheWeek
 
 window.onload = () => {
+    test()
+    getLocationCoordinates()
+    getResults()
+    displayResults()
     getWeather()
     document.getElementById('cityName').value = '';
 }
@@ -26,6 +30,8 @@ inputCity.addEventListener('keypress', getLocationCoordinates)
 button.addEventListener('click', getLocationCoordinates)
 
 export const getWeather = () => {
+    let lat = []
+    let lon = []
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
             lat = position.coords.latitude;
@@ -45,58 +51,6 @@ export const getWeather = () => {
                 })
         })
     }
-}
-
-function getLocationCoordinates(event) {
-    if (event.keyCode == 13) {
-        getResults(inputCity.value)
-    } else {
-        getResults(inputCity.value)
-    }
-}
-
-function getResults(query) {
-    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${query}&units=metric&appid=${API_KEY}`)
-        .then((data) => {
-            return data.json()
-        })
-        .then(displayResults)
-}
-
-function displayResults(data) {
-    /*   lat = data[0].lat
-       lon = data[0].lon*/
-    const urlCoordinate = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
-
-    fetch(urlCoordinate)
-        .then((response) => {
-            return response.json()
-        })
-        .then(data => {
-            city.innerHTML = data[0].name
-            lat = data[0].lat
-            lon = data[0].lon
-            reverseLocation(lat, lon)
-            // console.log(data)
-        })
-}
-
-function day() {
-    let day = new Date();
-    let weekDays = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-    ]
-
-    for (let i = 0; i < 5; i++) {
-        let dayOfTheWeek = weekDays[(day.getDay() + i) % 7]
-    }
-    console.log(day)
 }
 
 let forecast = `https://api.openweathermap.org/data/2.5/forecast?q=gent&cnt=5&units=metric&appid=${API_KEY}`
