@@ -24,7 +24,9 @@ const inputCity = document.querySelector('.inputCity')
 inputCity.addEventListener('keypress', getLocationCoordinates)
 button.addEventListener('click', getLocationCoordinates)
 
-const getWeather = () => {
+
+// Get user's location and show current weather at current location
+function getWeather() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
             lat = position.coords.latitude;
@@ -46,6 +48,7 @@ const getWeather = () => {
     }
 }
 
+// Use both enter and the search button
 function getLocationCoordinates(event) {
     if (event.keyCode == 13) {
         getResults(inputCity.value)
@@ -54,6 +57,7 @@ function getLocationCoordinates(event) {
     }
 }
 
+// Enter city name
 function getResults(query) {
     fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${query}&units=metric&appid=${API_KEY}`)
         .then((data) => {
@@ -62,9 +66,10 @@ function getResults(query) {
         .then(displayResults)
 }
 
+// Reverse geolocation turns coordinates into a city name
 function displayResults(data) {
-    /*   lat = data[0].lat
-       lon = data[0].lon*/
+       lat = data[0].lat
+       lon = data[0].lon
     const urlCoordinate = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
 
     fetch(urlCoordinate)
@@ -80,6 +85,7 @@ function displayResults(data) {
         })
 }
 
+// Loops through weekdays for the forecast
 function day() {
     let day = new Date();
     let weekDays = [
@@ -95,17 +101,16 @@ function day() {
     for (let i = 0; i < 5; i++) {
         let dayOfTheWeek = weekDays[(day.getDay() + i) % 7]
     }
-    console.log(day)
 }
 
-let forecast = `https://api.openweathermap.org/data/2.5/forecast?q=gent&cnt=5&units=metric&appid=${API_KEY}`
-
+// Five day forecast
 inputCity.addEventListener('keyup', (event) => {
     if (event.key === "Enter") {
         const thisCity = event.currentTarget.value.toLowerCase();
         const apiUrl = "https://api.openweathermap.org/data/2.5/forecast/?q=" + thisCity + "&appid=" + API_KEY
         event.currentTarget.value = ''
 
+        let forecast = `https://api.openweathermap.org/data/2.5/forecast?q=gent&cnt=5&units=metric&appid=${API_KEY}`
         fetch(forecast)
             .then(response => {
                 return response.json()
@@ -148,6 +153,7 @@ inputCity.addEventListener('keyup', (event) => {
     }
 })
 
+// Geolocation
 async function reverseLocation(lat, lon) {
     let url = fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`)
         .then(response => response.json())
