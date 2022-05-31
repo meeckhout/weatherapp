@@ -1,4 +1,5 @@
 import Data from "./config.js";
+import {newElementDiv} from './_element.js';
 const searchBar = document.querySelector('#searchBar');
 const container = document.querySelector(".container");
 const cityNameContainer = document.querySelector('.city-name');
@@ -43,60 +44,63 @@ searchBar.addEventListener('keyup', (event) => {
                             const data = result.daily[i];
 
                             // Create the elements with Data
-                            const card = document.createElement('div');
-                            card.classList.add("card");
-                            container.appendChild(card);
+                            const card = newElementDiv()
+                            container.classList.add('card');
+                            container.appendChild(newElementDiv())
 
-                            const imageBox = document.createElement('div');
-                            imageBox.classList.add("imgBx");
-                            card.appendChild(imageBox);
+                            // console.log(card)
+                            console.log(newElementDiv())
 
-                            const cardImg = document.createElement('img');
-                            cardImg.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
-                            imageBox.appendChild(cardImg);
-
-                            const contentBox = document.createElement("div");
-                            contentBox.classList.add("contentBx");
-                            card.appendChild(contentBox);
-
-                            const cardHeader = document.createElement("h2");
-                            cardHeader.innerHTML = dayOfTheWeek;
-                            contentBox.appendChild(cardHeader);
-
-                            const tempDescription = document.createElement("h4");
-                            tempDescription.innerHTML = data.weather[0].description;
-                            contentBox.appendChild(tempDescription);
-
-                            const currentTempBox = document.createElement("div");
-                            currentTempBox.classList.add("color");
-                            contentBox.appendChild(currentTempBox);
-
-                            const currentTempHeader = document.createElement("h3");
-                            currentTempHeader.innerHTML = "Temp:"
-                            currentTempBox.appendChild(currentTempHeader);
-
-                            const currentTemp = document.createElement("span");
-                            currentTemp.classList.add("current-temp");
-                            currentTemp.innerHTML = data.temp.day + "°C";
-                            currentTempBox.appendChild(currentTemp);
-
-                            const minMaxTemperatures = document.createElement("div");
-                            minMaxTemperatures.classList.add("details");
-                            contentBox.appendChild(minMaxTemperatures);
-
-                            const minMaxTempHeader = document.createElement("h3");
-                            minMaxTempHeader.innerHTML = "More:"
-                            minMaxTemperatures.appendChild(minMaxTempHeader);
-
-                            const minTemp = document.createElement("span");
-                            minTemp.classList.add("min-temp")
-                            minTemp.innerHTML = data.temp.min + "°C";
-                            minMaxTemperatures.appendChild(minTemp);
-
-                            const maxTemp = document.createElement("span");
-                            maxTemp.classList.add("max-temp")
-                            maxTemp.innerHTML = data.temp.max + "°C";
-                            minMaxTemperatures.appendChild(maxTemp);
+                            // const imageBox = document.createElement('div');
+                            // imageBox.classList.add("imgBx");
+                            // card.appendChild(imageBox);
+                            //
+                            // const cardImg = document.createElement('img');
+                            // cardImg.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";
+                            // imageBox.appendChild(cardImg);
+                            //
+                            // const contentBox = document.createElement("div");
+                            // contentBox.classList.add("contentBx");
+                            // card.appendChild(contentBox);
+                            //
+                            // const cardHeader = document.createElement("h2");
+                            // cardHeader.innerHTML = dayOfTheWeek;
+                            // contentBox.appendChild(cardHeader);
+                            //
+                            // const tempDescription = document.createElement("h4");
+                            // tempDescription.innerHTML = data.weather[0].description;
+                            // contentBox.appendChild(tempDescription);
+                            //
+                            // const currentTempBox = document.createElement("div");
+                            // currentTempBox.classList.add("color");
+                            // contentBox.appendChild(currentTempBox);
+                            //
+                            // const currentTempHeader = document.createElement("h3");
+                            // currentTempHeader.innerHTML = "Temp:"
+                            // currentTempBox.appendChild(currentTempHeader);
+                            //
+                            // const currentTemp = document.createElement("span");
+                            // currentTemp.classList.add("current-temp");
+                            // currentTemp.innerHTML = data.temp.day + "°C";
+                            // currentTempBox.appendChild(currentTemp);
+                            //
+                            // const minMaxTemperatures = document.createElement("div");
+                            // minMaxTemperatures.classList.add("details");
+                            // contentBox.appendChild(minMaxTemperatures);
+                            //
+                            // const minMaxTempHeader = document.createElement("h3");
+                            // minMaxTempHeader.innerHTML = "More:"
+                            // minMaxTemperatures.appendChild(minMaxTempHeader);
+                            //
+                            // const minTemp = document.createElement("span");
+                            // minTemp.classList.add("min-temp")
+                            // minTemp.innerHTML = data.temp.min + "°C";
+                            // minMaxTemperatures.appendChild(minTemp);
+                            //
+                            // const maxTemp = document.createElement("span");
+                            // maxTemp.classList.add("max-temp")
+                            // maxTemp.innerHTML = data.temp.max + "°C";
+                            // minMaxTemperatures.appendChild(maxTemp);
                         };
                     });
             })
