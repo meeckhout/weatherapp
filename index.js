@@ -4,6 +4,7 @@ const input = document.getElementById('cityName')
 const button = document.querySelector('.fa-solid')
 const temp = document.getElementById('temperature')
 const description = document.getElementById('description')
+const refresh = document.getElementsByClassName('refresh')
 const url = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&units=metric&appid=${API_KEY}`
 
 let city = document.getElementById('cityID')
@@ -15,6 +16,10 @@ window.onload = () => {
     getWeather()
     document.getElementById('cityName').value = '';
 }
+
+button.addEventListener('click', event => {
+    window.location.reload();
+})
 
 document.body.addEventListener('click', event => {
     document.getElementById('cityName').value = '';
@@ -98,9 +103,6 @@ function day() {
         let dayOfTheWeek = weekDays[(day.getDay() + 1 + i) % 7]
     }
 }
-
-// Remove five day forecast cards when doing a new search
-
 
 // Five day forecast
 inputCity.addEventListener('keyup', (event) => {
