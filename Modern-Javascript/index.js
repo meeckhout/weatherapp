@@ -12,7 +12,7 @@ searchBar.addEventListener('keyup', (event) => {
     if(event.key === "Enter") {
         // Store target in variable
         const thisCity = event.currentTarget.value.toLowerCase();
-        const apiUrl = "https://api.openweathermap.org/data/2.5/forecast/?q=" + thisCity + "&appid=" + Data.key;
+        const apiUrl = `https://api.openweathermap.org/data/2.5/forecast/?q=${thisCity}&appid=${Data.key}`;
         event.currentTarget.value = '';
         // Fetching first api to get the City coordinates
         fetch(apiUrl)
@@ -24,7 +24,7 @@ searchBar.addEventListener('keyup', (event) => {
                 cityNameContainer.innerHTML = data.city.name;
 
                 // Fetching final data according to the coordinates
-                fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&cnt=5&units=metric&exclude=minutely,hourly,alerts&appid=" + Data.key)
+                fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&cnt=5&units=metric&exclude=minutely,hourly,alerts&appid=${Data.key}`)
                     .then(response => response.json())
                     .then(result => {
                         console.log('Welcome to this basic weather app. this is not a product but the product of an academic exercise.')
