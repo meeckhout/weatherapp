@@ -48,13 +48,9 @@ function getWeather() {
     }
 }
 
-// Use both enter and the search button
+// Get location coordinates
 function getLocationCoordinates(event) {
-    if (event.keyCode == 13) {
-        getResults(inputCity.value)
-    } else {
-        getResults(inputCity.value)
-    }
+    getResults(inputCity.value)
 }
 
 // Enter city name
@@ -99,17 +95,16 @@ function day() {
     ]
 
     for (let i = 0; i < 5; i++) {
-        let dayOfTheWeek = weekDays[(day.getDay() + i) % 7]
+        let dayOfTheWeek = weekDays[(day.getDay() + 1 + i) % 7]
     }
 }
+
+// Remove five day forecast cards when doing a new search
+
 
 // Five day forecast
 inputCity.addEventListener('keyup', (event) => {
     if (event.key === "Enter") {
-        const thisCity = event.currentTarget.value.toLowerCase();
-        const apiUrl = "https://api.openweathermap.org/data/2.5/forecast/?q=" + thisCity + "&appid=" + API_KEY
-        event.currentTarget.value = ''
-
         let forecast = `https://api.openweathermap.org/data/2.5/forecast?q=gent&cnt=5&units=metric&appid=${API_KEY}`
         fetch(forecast)
             .then(response => {
