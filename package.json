@@ -2,15 +2,11 @@
   "name": "the-weather",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
-  "watch": {
-    "test": "{src,test}/*.js"
-  },
+  "main": "webpack.config.js",
   "scripts": {
-    "dev": "../node_modules/.bin/webpack --mode development",
-    "build": "../node_modules/.bin/webpack --mode production",
-    "test": "tape test/*.js",
-    "watch": "npm-watch"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -24,11 +20,15 @@
   },
   "homepage": "https://github.com/becodeorg/yu-4-the-weather-meeckhout#readme",
   "devDependencies": {
-    "webpack": "^5.72.1",
-    "webpack-cli": "^4.9.2"
+    "@babel/core": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
+    "babel-loader": "^8.2.5",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1"
   },
   "dependencies": {
-    "lodash": "^4.17.21",
-    "npm-watch": "^0.11.0"
+    "lodash": "^4.17.21"
   }
 }
