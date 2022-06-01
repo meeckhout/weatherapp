@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const path = require('path');
 
 module.exports = {
@@ -8,6 +9,13 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: 'index_bundle.js',
+    },
+    devServer: {
+        static: {
+            directory: path.join(__dirname, 'public'),
+        },
+        compress: true,
+        port: 9000,
     },
     module: {
         rules: [
@@ -22,8 +30,15 @@ module.exports = {
                 }
             },
             {
-                test: /\.scss$/,
-                use: ["style-loader", "css-loader"]
+                test: /\.s[ac]ss$/i,
+                use: [
+                    // Creates `style` nodes from JS strings
+                    "style-loader",
+                    // Translates CSS into CommonJS
+                    "css-loader",
+                    // Compiles Sass to CSS
+                    "sass-loader",
+                ],
             },
             {
                 test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
@@ -40,6 +55,11 @@ module.exports = {
             title: 'Custom template',
             // Load a custom template (lodash by default)
             template: './src/index.html'
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: "src/assets", to: "dist/assets" },
+            ],
         }),
     ],
 };
