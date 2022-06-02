@@ -44,6 +44,11 @@ module.exports = {
             {
                 test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
                 type: 'asset/resource',
+                use: [
+                    {
+                        loader: 'file-loader',
+                    },
+                ]
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/i,
@@ -56,11 +61,6 @@ module.exports = {
             title: 'Custom template',
             // Load a custom template (lodash by default)
             template: './src/index.html'
-        }),
-        new CopyPlugin({
-            patterns: [
-                { from: "src/assets", to: "dist/assets" },
-            ],
         }),
         new CleanWebpackPlugin(),
     ],
