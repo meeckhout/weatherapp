@@ -1,12 +1,9 @@
 import './style.scss'
 import './assets/hare.png'
 import {API_KEY} from './config.js'
-
-const input = document.getElementById('cityName')
 const button = document.querySelector('.fa-solid')
 const temp = document.getElementById('temperature')
 const description = document.getElementById('description')
-const refresh = document.getElementsByClassName('refresh')
 const url = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&units=metric&appid=${API_KEY}`
 
 let city = document.getElementById('cityID')
