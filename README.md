@@ -1,5 +1,3 @@
-# yu-4-the-weather-meeckhout
-yu-4-the-weather-meeckhout created by GitHub Classroom
 
 // WEATHER APP // 
 
